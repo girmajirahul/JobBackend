@@ -54,15 +54,22 @@ exports.deleteJob = async (req, res) => {
 
 // PLATFORM STATS
 exports.getStats = async (req, res) => {
+  try {
+    const totalUsers = await User.countDocuments();
+    const totalJobs = await Job.countDocuments();
+    const activeJobs = await Job.countDocuments({ status:"active" }); // active jobs
+    const inactiveJobs = await Job.countDocuments({ status:"inactive" }); // inactive jobs
+    const totalApplications = await Application.countDocuments();
 
-  const users = await User.countDocuments();
-  const jobs = await Job.countDocuments();
-  const applications = await Application.countDocuments();
-
-  res.json({
-    totalUsers: users,
-    totalJobs: jobs,
-    totalApplications: applications
-  });
-
+    res.json({
+      totalUsers,
+      totalJobs,
+      activeJobs,
+      inactiveJobs,
+      totalApplications
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
 };

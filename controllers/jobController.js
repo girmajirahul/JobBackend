@@ -171,6 +171,46 @@ exports.updateJob = async (req, res) => {
 };
 
 
+exports.updateJobStatus = async (req, res) => {
+
+  try {
+
+    const { status } = req.body;
+
+    if (!["active", "inactive"].includes(status)) {
+      return res.status(400).json({
+        message: "Invalid status value"
+      });
+    }
+
+    const job = await Job.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true }
+    );
+
+    if (!job) {
+      return res.status(404).json({
+        message: "Job not found"
+      });
+    }
+
+    res.json({
+      message: "Job status updated",
+      job
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message
+    });
+
+  }
+
+};
+
+
 // DELETE JOB
 exports.deleteJob = async (req, res) => {
   try {

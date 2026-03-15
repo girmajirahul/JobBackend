@@ -10,7 +10,7 @@ const app = express();
 
 app.use(cors({
   origin: "*",             // Allow all origins
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS","PATCH"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
@@ -25,12 +25,12 @@ app.get('/', (req, res) => {
   res.send("Welcome to JobPortal Backend!");
 })
 
-// const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
-// app.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-// });
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 
 
-module.exports = app;
+// module.exports = app;

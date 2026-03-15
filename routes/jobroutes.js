@@ -4,6 +4,16 @@ const router = express.Router();
 const protect = require("../middleware/authMiddleware");
 const checkEmployer = require("../middleware/roleMiddleware");
 const upload = require("../middleware/uploadMiddleware");
+const adminOnly = require("../middleware/adminMiddleware");
+
+const { updateJobStatus } = require("../controllers/jobController");
+
+router.patch(
+  "/status/:id",
+  protect,
+  adminOnly,
+  updateJobStatus
+);
 
 const { bulkImportJobs } = require("../controllers/jobController");
 

@@ -47,6 +47,7 @@ exports.login = async (req, res) => {
       return res.status(401).json({ message: "Invalid Credentials" });
 
     res.status(200).json({
+      success:true,
        message:"Login successfull", 
        token: generateToken(user),
        data:{

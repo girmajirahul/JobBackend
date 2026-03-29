@@ -20,6 +20,8 @@ app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/jobs", require("./routes/jobroutes"));
 app.use("/api/applications", require("./routes/applicationRoutes"));
 app.use("/api/admin", require("./routes/adminRoutes"));
+app.use("/api/resume", require("./routes/resumeRoutes"));
+app.use('/api/users',require("./routes/userRoutes"))
 
 app.get('/', (req, res) => {
   res.send("Welcome to JobPortal Backend!");

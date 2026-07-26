@@ -15,6 +15,7 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.use('/images', express.static('public/images'));
 
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/jobs", require("./routes/jobroutes"));

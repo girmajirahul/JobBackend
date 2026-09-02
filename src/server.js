@@ -23,6 +23,7 @@ app.use("/api/applications", require("./routes/applicationRoutes"));
 app.use("/api/admin", require("./routes/adminRoutes"));
 app.use("/api/resume", require("./routes/resumeRoutes"));
 app.use('/api/users',require("./routes/userRoutes"))
+app.use("/api/tests", require("./routes/testRoutes"));
 
 app.get('/', (req, res) => {
   res.send("Welcome to JobPortal Backend!");
@@ -30,10 +31,10 @@ app.get('/', (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
 
 
 
-// module.exports = app;
+module.exports = app;

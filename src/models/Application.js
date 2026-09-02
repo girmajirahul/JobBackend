@@ -13,7 +13,7 @@ const applicationSchema = new mongoose.Schema({
     type: String,
     enum: ["pending", "accepted", "rejected"],
     default: "pending",
-  },
+  },  
 }, { timestamps: true });
 
 module.exports = mongoose.model("Application", applicationSchema);

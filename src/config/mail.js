@@ -7,7 +7,7 @@ const transporter = nodemailer.createTransport({
   secure: false, // use STARTTLS (upgrade connection to TLS after connecting)
   auth: {
     user: "girmajirahul2@gmail.com",
-    pass: "hrqzzelpogqrersq",
+    pass: "mzlygyoxkhlzsxca",
   },
 });
 

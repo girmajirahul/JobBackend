@@ -38,6 +38,31 @@ exports.addEducation = async (req, res) => {
   }
 };
 
+exports.getEducation = async (req, res) => {
+  try {
+    const education = await User.findById(req.user.id)
+      .select("education -_id");
+
+    if (!education) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Education fetched successfully",
+      data: education.education,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch education",
+    });
+  }
+};
+
 exports.updateEducation = async (req, res) => {
   try {
 
@@ -91,6 +116,31 @@ exports.addExperience = async (req, res) => {
   }
 };
 
+exports.getExperience = async (req, res) => {
+  try {
+    const experience = await User.findById(req.user.id)
+      .select("experience -_id");
+
+    if (!experience) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Experience fetched successfully",
+      data: experience.experience,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch experience",
+    });
+  }
+};
+
 exports.updateExperience = async (req, res) => {
   try {
 
@@ -140,7 +190,52 @@ exports.addProject = async (req, res) => {
   }
 };
 
+exports.getProjects=async(req,res)=>{
+  try{
+    const projects = await User.findById(req.user.id)
+      .select("projects -_id");
+
+    if (!projects) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Projects fetched successfully",
+      data: projects.projects,
+    });
+  }catch(error){
+    res.status(500).json({ message: error.message });
+  }
+}
+
 // ================= SKILLS =================
+exports.getSkills =async(req,res)=>{
+  try{
+    const skills = await User.findById(req.user.id)
+      .select("skills -_id");
+
+    if (!skills) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Skills fetched successfully",
+      data: skills.skills,
+    });
+
+  }catch(err){
+    res.status(500).json(err.message)
+  }
+}
+
 exports.updateSkills = async (req, res) => {
   try {
 
@@ -154,5 +249,25 @@ exports.updateSkills = async (req, res) => {
 
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+};
+
+
+
+exports.getProfile = async (req, res) => {
+  try {
+    const userdata = await User.findById(req.user.id)
+      .select("name email phone location linkedin github jobTitle website bio ");
+
+    res.json({
+      success: true,
+      message: "Data fetched successfully",
+      data: userdata,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch user data",
+    });
   }
 };
